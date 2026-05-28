@@ -7,6 +7,7 @@ const morgan = require('morgan');
 const apiRoutes = require('./routes');
 const errorHandler = require('./middleware/errorHandler');
 const { connectPostgres, closePostgres } = require('./config/postgres');
+const { connectMongo, disconnectMongo } = require('./config/mongodb');
 const { initializeAuthTables } = require('./modules/auth/repository');
 const { initializeInstitutionsTable } = require('./modules/institutions/repository');
 const { initializeResidentsTable } = require('./modules/residents/repository');
@@ -33,6 +34,26 @@ const initializeDatabase = async () => {
   await initializeAuthTables();
   await initializeInstitutionsTable();
   await initializeResidentsTable();
+
+  try {
+    await connectMongo();
+  } catch (error) {
+    console.error('MongoDB connection failed. Stopping application startup.', error);
+    throw error;
+  }
+};
+
+const closeDatabases = async () => {
+  await Promise.allSettled([
+    disconnectMongo(),
+    closePostgres(),
+  ]).then((results) => {
+    const rejected = results.find((result) => result.status === 'rejected');
+
+    if (rejected) {
+      throw rejected.reason;
+    }
+  });
 };
 
 const startServer = async () => {
@@ -47,10 +68,10 @@ const startServer = async () => {
 
     server.close(async () => {
       try {
-        await closePostgres();
+        await closeDatabases();
         process.exit(0);
       } catch (error) {
-        console.error('Failed to close PostgreSQL pool', error);
+        console.error('Failed to close database connections', error);
         process.exit(1);
       }
     });
@@ -63,7 +84,11 @@ const startServer = async () => {
 if (require.main === module) {
   startServer().catch(async (error) => {
     console.error('Failed to start WelfareSync Engine', error);
-    await closePostgres();
+    try {
+      await closeDatabases();
+    } catch (shutdownError) {
+      console.error('Failed to close database connections after startup failure', shutdownError);
+    }
     process.exit(1);
   });
 }

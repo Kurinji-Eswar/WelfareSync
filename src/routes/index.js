@@ -3,6 +3,7 @@ const AppError = require('../utils/AppError');
 const authRoutes = require('../modules/auth/routes');
 const institutionsRoutes = require('../modules/institutions/routes');
 const residentsRoutes = require('../modules/residents/routes');
+const logsRoutes = require('../modules/logs/routes');
 
 const router = express.Router();
 
@@ -19,6 +20,8 @@ router.get('/health', (req, res) => {
 
 router.use('/auth', authRoutes.router);
 router.use('/institutions', institutionsRoutes.router);
+router.use('/logs', logsRoutes.router);
+router.use('/residents/:residentId/logs', logsRoutes.residentLogsRouter);
 router.use('/residents', residentsRoutes.router);
 
 router.use((req, res, next) => {
