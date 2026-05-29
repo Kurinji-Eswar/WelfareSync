@@ -8,9 +8,11 @@ const apiRoutes = require('./routes');
 const errorHandler = require('./middleware/errorHandler');
 const { connectPostgres, closePostgres } = require('./config/postgres');
 const { connectMongo, disconnectMongo } = require('./config/mongodb');
+const { connectRedis, disconnectRedis } = require('./config/redis');
 const { initializeAuthTables } = require('./modules/auth/repository');
 const { initializeInstitutionsTable } = require('./modules/institutions/repository');
 const { initializeResidentsTable } = require('./modules/residents/repository');
+const { initializeAnalyticsTable } = require('./modules/analytics/repository');
 
 const app = express();
 const PORT = Number(process.env.PORT || 3000);
@@ -34,6 +36,7 @@ const initializeDatabase = async () => {
   await initializeAuthTables();
   await initializeInstitutionsTable();
   await initializeResidentsTable();
+  await initializeAnalyticsTable();
 
   try {
     await connectMongo();
@@ -41,19 +44,29 @@ const initializeDatabase = async () => {
     console.error('MongoDB connection failed. Stopping application startup.', error);
     throw error;
   }
+
+  try {
+    await connectRedis();
+  } catch (error) {
+    console.error('Redis connection failed. Stopping application startup.', error);
+    throw error;
+  }
 };
 
 const closeDatabases = async () => {
-  await Promise.allSettled([
-    disconnectMongo(),
-    closePostgres(),
-  ]).then((results) => {
-    const rejected = results.find((result) => result.status === 'rejected');
+  const errors = [];
 
-    if (rejected) {
-      throw rejected.reason;
+  for (const disconnect of [disconnectRedis, disconnectMongo, closePostgres]) {
+    try {
+      await disconnect();
+    } catch (error) {
+      errors.push(error);
     }
-  });
+  }
+
+  if (errors.length) {
+    throw errors[0];
+  }
 };
 
 const startServer = async () => {

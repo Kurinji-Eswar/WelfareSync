@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const roles = require('../../constants/roles');
 const AppError = require('../../utils/AppError');
+const { publishCareLogCreated } = require('../../events/publishers/careLogPublisher');
 const residentsRepository = require('../residents/repository');
 const repository = require('./repository');
 const { CARE_LOG_TYPES } = require('./models/CareLog');
@@ -172,7 +173,27 @@ const createCareLog = async ({ tenantId, user, payload }) => {
 
   await ensureResidentExists({ tenantId: normalizedTenantId, residentId: log.residentId });
 
-  return repository.createCareLog({ tenantId: normalizedTenantId, log });
+  const createdLog = await repository.createCareLog({ tenantId: normalizedTenantId, log });
+
+  try {
+    await publishCareLogCreated({
+      tenantId: createdLog.tenantId,
+      residentId: createdLog.residentId,
+      caretakerId: createdLog.caretakerId,
+      logId: createdLog.id,
+      type: createdLog.type,
+      recordedAt: createdLog.recordedAt,
+    });
+  } catch (error) {
+    console.error('Failed to publish care-log-created event', {
+      tenantId: createdLog.tenantId,
+      residentId: createdLog.residentId,
+      logId: createdLog.id,
+      error,
+    });
+  }
+
+  return createdLog;
 };
 
 const listCareLogs = async ({ tenantId, user, query }) => {

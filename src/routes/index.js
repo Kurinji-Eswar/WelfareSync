@@ -4,6 +4,7 @@ const authRoutes = require('../modules/auth/routes');
 const institutionsRoutes = require('../modules/institutions/routes');
 const residentsRoutes = require('../modules/residents/routes');
 const logsRoutes = require('../modules/logs/routes');
+const analyticsRoutes = require('../modules/analytics/routes');
 
 const router = express.Router();
 
@@ -21,6 +22,7 @@ router.get('/health', (req, res) => {
 router.use('/auth', authRoutes.router);
 router.use('/institutions', institutionsRoutes.router);
 router.use('/logs', logsRoutes.router);
+router.use('/analytics', analyticsRoutes.router);
 router.use('/residents/:residentId/logs', logsRoutes.residentLogsRouter);
 router.use('/residents', residentsRoutes.router);
 
