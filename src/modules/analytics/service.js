@@ -1,6 +1,7 @@
 const AppError = require('../../utils/AppError');
 const residentsRepository = require('../residents/repository');
 const logsRepository = require('../logs/repository');
+const notificationsService = require('../notifications/service');
 const repository = require('./repository');
 
 const LOG_TYPES = ['medication', 'nutrition', 'vitals', 'activity'];
@@ -154,7 +155,33 @@ const getResidentAnalytics = async ({ tenantId, residentId }) => {
   };
 };
 
+// TEMPORARY TEST ROUTE.
+const testLowScoreNotification = async ({ tenantId, residentId }) => {
+  const { resident, analytics } = await computeResidentAnalytics({ tenantId, residentId });
+  const forcedAnalytics = await repository.upsertResidentAnalytics({
+    tenantId: analytics.tenantId,
+    residentId: analytics.residentId,
+    medicationScore: analytics.scores.medication,
+    nutritionScore: analytics.scores.nutrition,
+    vitalsScore: analytics.scores.vitals,
+    activityScore: analytics.scores.activity,
+    welfareIndex: 25,
+  });
+  const notification = await notificationsService.createLowWelfareScoreNotification({
+    tenantId: analytics.tenantId,
+    residentId: analytics.residentId,
+  });
+
+  return {
+    resident,
+    scores: forcedAnalytics.scores,
+    welfareIndex: forcedAnalytics.welfareIndex,
+    notification,
+  };
+};
+
 module.exports = {
   computeResidentAnalytics,
   getResidentAnalytics,
+  testLowScoreNotification,
 };

@@ -4,24 +4,32 @@ const asyncHandler = require('../../utils/asyncHandler');
 const authenticate = require('../../middleware/authenticate');
 const authorize = require('../../middleware/authorize');
 const tenantValidation = require('../../middleware/tenantValidation');
-const analyticsController = require('./controller');
+const dashboardController = require('./controller');
 
 const router = express.Router();
 
 router.use(authenticate);
 router.use(tenantValidation);
+router.use(authorize([roles.ADMIN, roles.GUARDIAN]));
 
-// TEMPORARY TEST ROUTE.
-router.post(
-  '/test-low-score/:residentId',
-  authorize([roles.ADMIN]),
-  asyncHandler(analyticsController.testLowScoreNotification),
+router.get(
+  '/overview',
+  asyncHandler(dashboardController.getOverview),
+);
+
+router.get(
+  '/residents',
+  asyncHandler(dashboardController.listResidents),
+);
+
+router.get(
+  '/notifications',
+  asyncHandler(dashboardController.listNotifications),
 );
 
 router.get(
   '/residents/:residentId',
-  authorize([roles.ADMIN, roles.CARETAKER, roles.GUARDIAN]),
-  asyncHandler(analyticsController.getResidentAnalytics),
+  asyncHandler(dashboardController.getResidentDashboard),
 );
 
 module.exports = {

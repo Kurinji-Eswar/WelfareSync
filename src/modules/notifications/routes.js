@@ -4,24 +4,27 @@ const asyncHandler = require('../../utils/asyncHandler');
 const authenticate = require('../../middleware/authenticate');
 const authorize = require('../../middleware/authorize');
 const tenantValidation = require('../../middleware/tenantValidation');
-const analyticsController = require('./controller');
+const notificationsController = require('./controller');
 
 const router = express.Router();
 
 router.use(authenticate);
 router.use(tenantValidation);
+router.use(authorize([roles.ADMIN, roles.CARETAKER, roles.GUARDIAN]));
 
-// TEMPORARY TEST ROUTE.
-router.post(
-  '/test-low-score/:residentId',
-  authorize([roles.ADMIN]),
-  asyncHandler(analyticsController.testLowScoreNotification),
+router.get(
+  '/',
+  asyncHandler(notificationsController.listNotifications),
 );
 
 router.get(
   '/residents/:residentId',
-  authorize([roles.ADMIN, roles.CARETAKER, roles.GUARDIAN]),
-  asyncHandler(analyticsController.getResidentAnalytics),
+  asyncHandler(notificationsController.listResidentNotifications),
+);
+
+router.patch(
+  '/:id/read',
+  asyncHandler(notificationsController.markNotificationAsRead),
 );
 
 module.exports = {

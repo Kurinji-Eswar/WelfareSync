@@ -13,6 +13,7 @@ const { initializeAuthTables } = require('./modules/auth/repository');
 const { initializeInstitutionsTable } = require('./modules/institutions/repository');
 const { initializeResidentsTable } = require('./modules/residents/repository');
 const { initializeAnalyticsTable } = require('./modules/analytics/repository');
+const { initializeNotificationsTable } = require('./modules/notifications/repository');
 
 const app = express();
 const PORT = Number(process.env.PORT || 3000);
@@ -37,6 +38,7 @@ const initializeDatabase = async () => {
   await initializeInstitutionsTable();
   await initializeResidentsTable();
   await initializeAnalyticsTable();
+  await initializeNotificationsTable();
 
   try {
     await connectMongo();

@@ -1,5 +1,6 @@
 const CARE_LOG_TYPES = new Set(['medication', 'nutrition', 'vitals', 'activity']);
 const analyticsService = require('../modules/analytics/service');
+const notificationsService = require('../modules/notifications/service');
 
 const validatePayload = (event) => {
   if (!event || typeof event !== 'object' || Array.isArray(event)) {
@@ -44,10 +45,17 @@ const processCareLogEvent = async (event) => {
     type: validatedEvent.type,
   });
 
-  await analyticsService.computeResidentAnalytics({
+  const result = await analyticsService.computeResidentAnalytics({
     tenantId: validatedEvent.tenantId,
     residentId: validatedEvent.residentId,
   });
+
+  if (result.analytics.welfareIndex < 50) {
+    await notificationsService.createLowWelfareScoreNotification({
+      tenantId: validatedEvent.tenantId,
+      residentId: validatedEvent.residentId,
+    });
+  }
 
   console.info('Analytics processing completed', {
     tenantId: validatedEvent.tenantId,
