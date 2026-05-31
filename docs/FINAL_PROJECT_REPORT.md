@@ -2,7 +2,7 @@
 ## WELFARESYNC ENGINE: A SCALABLE MULTI-TENANT RESIDENT WELFARE ANALYTICS & MONITORING SYSTEM
 
 **Submitted in partial fulfillment of the requirements for the award of the degree of**
-### Bachelor of Technology (B.Tech) in Computer Science and Engineering
+### Bachelor of Technology (B.Tech) Computer Science and Engineering
 
 **Submitted by:**
 *   **Student Name**: Kurinji Eswar J A
@@ -12,17 +12,20 @@
 *   **Project Supervisor**: Dr. Ajey Prasaath K.B
 *   **Designation**: Assistant Professor
 
+**Institution:**
+*   **SRM Institute of Science and Technology, Tiruchirappalli**
+
 ---
 
 ## CERTIFICATE
 
-This is to certify that the project report entitled **"WelfareSync Engine: A Scalable Multi-Tenant Resident Welfare Analytics & Monitoring System"** is a bonafide work carried out by **[Developer Name]** under my supervision and guidance. 
+This is to certify that the project report entitled **"WelfareSync Engine: A Scalable Multi-Tenant Resident Welfare Analytics & Monitoring System"** is a bonafide work carried out by **Kurinji Eswar J A** under my supervision and guidance. 
 
 The results embodied in this report have not been submitted to any other University or Institute for the award of any degree or diploma.
 
 **Signature of Supervisor**  
-**Date**: [Date]  
-**Place**: [Place]  
+**Date**: May 31, 2026  
+**Place**: Tiruchirappalli  
 
 ---
 
@@ -31,14 +34,14 @@ The results embodied in this report have not been submitted to any other Univers
 I hereby declare that the project work entitled **"WelfareSync Engine: A Scalable Multi-Tenant Resident Welfare Analytics & Monitoring System"** submitted to the Department of Computer Science is an original work compiled by me. All sources of information and data utilized in this study have been acknowledged.
 
 **Signature of Student**  
-**Date**: [Date]  
-**Place**: [Place]  
+**Date**: May 31, 2026  
+**Place**: Tiruchirappalli  
 
 ---
 
 ## ACKNOWLEDGEMENT
 
-I express my deep gratitude to my supervisor, **[Supervisor Name]**, designation Assistant Professor, for their invaluable guidance, encouragement, and support throughout the design and implementation of the WelfareSync Engine.
+I express my deep gratitude to my supervisor, **Dr. Ajey Prasaath K.B**, designation Assistant Professor, for their invaluable guidance, encouragement, and support throughout the design and implementation of the WelfareSync Engine.
 
 I also extend my sincere thanks to our academic coordinator and head of department for providing the necessary computing resources, lab environments, and administrative support. Finally, I thank my family and peers for their constant support and helpful reviews during the system development process.
 
@@ -168,12 +171,12 @@ The WelfareSync Engine operates as the core computational and data analytics hub
 
 ```mermaid
 graph TD
-    subgraph Kuralara CareConnect Ecosystem
+    subgraph Ecosystem ["Kuralara CareConnect Ecosystem"]
         CaretakerApp[CareConnect Mobile App] -->|HTTPS REST| WSAPI[WelfareSync HTTP API]
         GuardianPortal[CareConnect Guardian Portal] -->|HTTPS REST| WSAPI
         AdminPortal[CareConnect Central Admin] -->|HTTPS REST| WSAPI
         
-        subgraph WelfareSync Engine
+        subgraph Engine ["WelfareSync Engine"]
             WSAPI -->|Write Log| Mongo[(MongoDB Care Logs)]
             WSAPI -->|Publish event| Redis((Redis Message Broker))
             Redis -->|Sub| Sub[Analytics Subscriber]
@@ -257,9 +260,9 @@ graph TD
     SetContext --> Handler[Controller Handler]
     Handler --> Repo[Repository Layer]
     
-    subgraph Data Layer Segregation
+    subgraph DataLayerSegregation ["Data Layer Segregation"]
         Repo -->|1. SQL: WHERE tenant_id = context.tenantId| PG[(PostgreSQL)]
-        Repo -->|2. Mongoose: { tenantId: context.tenantId }| Mongo[(MongoDB)]
+        Repo -->|2. Mongoose: tenantId = context.tenantId| Mongo[(MongoDB)]
     end
 ```
 
@@ -434,11 +437,11 @@ graph TD
     Controller --> Service[Dashboard Service]
     Service --> Repo[Dashboard Repository]
     
-    subgraph SQL Aggregations
-        Repo -->|1. Get Total Count| Count[SELECT COUNT(*) FROM residents WHERE tenant_id]
-        Repo -->|2. Compute Average Index| Avg[SELECT AVG(welfare_index) FROM resident_analytics WHERE tenant_id]
-        Repo -->|3. Risk Categories| Risk[SELECT welfare_index FROM resident_analytics WHERE tenant_id]
-        Repo -->|4. Unread Notifications| Notif[SELECT COUNT(*) FROM notifications WHERE tenant_id AND status = 'UNREAD']
+    subgraph SQLAggregations ["SQL Aggregations"]
+        Repo -->|1. Get Total Count| Count["SELECT COUNT(*) FROM residents WHERE tenant_id"]
+        Repo -->|2. Compute Average Index| Avg["SELECT AVG(welfare_index) FROM resident_analytics WHERE tenant_id"]
+        Repo -->|3. Risk Categories| Risk["SELECT welfare_index FROM resident_analytics WHERE tenant_id"]
+        Repo -->|4. Unread Notifications| Notif["SELECT COUNT(*) FROM notifications WHERE tenant_id AND status = 'UNREAD'"]
     end
     
     Count --> Compile[Compile Overview JSON Payload]

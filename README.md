@@ -6,7 +6,7 @@
 ## Project Status
 
 *   **Status**: Completed
-*   **Academic Year**: 2025–2026
+*   **Academic Year**: 2026–2027
 *   **Documentation**:
     *   [docs/SRS.md](docs/SRS.md)
     *   [docs/HLD.md](docs/HLD.md)
@@ -31,7 +31,10 @@
 *   **Author Name**: Kurinji Eswar J A
 *   **Degree**: Bachelor of Technology (B.Tech)
     Computer Science and Engineering
-*   **Academic Project**: Academic Year 2025–2026
+*   **Academic Project**: Academic Year 2026–2027
+*   **Project Supervisor**: Dr. Ajey Prasaath K.B
+*   **Designation**: Assistant Professor
+*   **Institution**: SRM Institute of Science and Technology, Tiruchirappalli Campus
 
 ---
 
