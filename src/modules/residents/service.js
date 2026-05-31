@@ -76,7 +76,8 @@ const assertGuardianCanAccessResident = async ({ user, resident }) => {
     return;
   }
 
-  // TODO: Replace this fail-closed placeholder with a guardian_residents tenant-scoped assignment check.
+  // Future Enhancement:
+  // Implement guardian-to-resident assignment validation using tenant-scoped access control.
   throw new AppError('Guardian resident assignment validation is not implemented', 403, {
     residentId: resident.id,
   });
