@@ -29,7 +29,8 @@
 
 ## Author
 *   **Author Name**: Kurinji Eswar J A
-*   **Degree**: Bachelor of Computer Applications
+*   **Degree**: Bachelor of Technology (B.Tech)
+    Computer Science and Engineering
 *   **Academic Project**: Academic Year 2025–2026
 
 ---

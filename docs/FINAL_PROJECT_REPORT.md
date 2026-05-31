@@ -2,14 +2,14 @@
 ## WELFARESYNC ENGINE: A SCALABLE MULTI-TENANT RESIDENT WELFARE ANALYTICS & MONITORING SYSTEM
 
 **Submitted in partial fulfillment of the requirements for the award of the degree of**
-### Master of Computer Applications / Bachelor of Technology in Computer Science
+### Bachelor of Technology (B.Tech) in Computer Science and Engineering
 
 **Submitted by:**
-*   **Student Name**: [Developer Name]
-*   **Roll Number**: [Roll Number]
+*   **Student Name**: Kurinji Eswar J A
+*   **Roll Number**: RA2411003050174
 
 **Under the supervision of:**
-*   **Project Supervisor**: [Supervisor Name]
+*   **Project Supervisor**: Dr. Ajey Prasaath K.B
 *   **Designation**: Assistant Professor
 
 ---
