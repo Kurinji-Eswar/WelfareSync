@@ -13,8 +13,8 @@ This Low Level Design (LLD) document defines the concrete software design specif
 The WelfareSync Engine is built as a modular monolithic backend using Node.js and Express.js. It interfaces with PostgreSQL for relational integrity, MongoDB for document timelines, and Redis for pub/sub messaging.
 
 ### 1.3 References
-*   *WelfareSync Software Requirements Specification (SRS)* - [docs/SRS.md](file:///k:/Kuralara_CareConnect/WelfareSync/docs/SRS.md)
-*   *WelfareSync High Level Design (HLD)* - [docs/HLD.md](file:///k:/Kuralara_CareConnect/WelfareSync/docs/HLD.md)
+*   *WelfareSync Software Requirements Specification (SRS)* - [docs/SRS.md](SRS.md)
+*   *WelfareSync High Level Design (HLD)* - [docs/HLD.md](HLD.md)
 
 ### 1.4 Directory Structure Mapping
 ```

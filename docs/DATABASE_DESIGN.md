@@ -11,9 +11,9 @@ This Database Design Document provides a comprehensive technical specification o
 
 ### 1.2 System Context & References
 The data storage tier maps directly to the modular boundaries defined in the system documentation:
-*   *Software Requirements Specification (SRS)* - [docs/SRS.md](file:///k:/Kuralara_CareConnect/WelfareSync/docs/SRS.md)
-*   *High Level Design (HLD)* - [docs/HLD.md](file:///k:/Kuralara_CareConnect/WelfareSync/docs/HLD.md)
-*   *Low Level Design (LLD)* - [docs/LLD.md](file:///k:/Kuralara_CareConnect/WelfareSync/docs/LLD.md)
+*   *Software Requirements Specification (SRS)* - [docs/SRS.md](SRS.md)
+*   *High Level Design (HLD)* - [docs/HLD.md](HLD.md)
+*   *Low Level Design (LLD)* - [docs/LLD.md](LLD.md)
 
 ### 1.3 Technology Versions
 *   **Relational Storage**: PostgreSQL $\ge 14$

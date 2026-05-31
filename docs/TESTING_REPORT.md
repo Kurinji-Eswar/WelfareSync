@@ -157,7 +157,7 @@ The analytics worker updates resident scores asynchronously.
 ### 10.1 Welfare Index Computation Verification
 The system calculates the overall Welfare Index ($WI$) using a weighted average formula across three categories: medication, nutrition, and vitals. Physical activity logs ($S_{\text{act}}$) are parsed and averaged by the Analytics Worker, but are excluded from the overall welfare index computation because the PostgreSQL `residents` schema model does not define a weight column for activity telemetry.
 
-The formula implemented in [src/modules/analytics/service.js](file:///k:/Kuralara_CareConnect/WelfareSync/src/modules/analytics/service.js#L72-L89) is:
+The formula implemented in [src/modules/analytics/service.js](../src/modules/analytics/service.js#L72-L89) is:
 $$WI = \text{clampScore}\left(\frac{(W_{\text{med}} \times S_{\text{med}}) + (W_{\text{nut}} \times S_{\text{nut}}) + (W_{\text{vit}} \times S_{\text{vit}})}{W_{\text{med}} + W_{\text{nut}} + W_{\text{vit}}}\right)$$
 
 where:
