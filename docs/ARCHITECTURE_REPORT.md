@@ -204,9 +204,9 @@ graph TD
     AuthMiddleware -->|Missing X-Tenant-ID or Mismatch| Err[HTTP 403 Forbidden]
     AuthMiddleware -->|Validated Tenant Context| Repo[Repository Layer]
     
-    subgraph Isolated Queries
+    subgraph IsolatedQueries ["Isolated Queries"]
         Repo -->|Append: WHERE tenant_id = contextId| PG[(PostgreSQL)]
-        Repo -->|Append: { tenantId: contextId }| Mongo[(MongoDB)]
+        Repo -->|Append: tenantId = contextId| Mongo[(MongoDB)]
     end
 ```
 
@@ -273,14 +273,17 @@ graph TD
     Request[GET /dashboard/overview] --> Middleware[Auth & Tenant Checks]
     Middleware --> DBQuery[PostgreSQL Aggregations]
     
-    subgraph Data Compile
+    subgraph DataCompile ["Data Compile"]
         DBQuery -->|COUNT| Residents[Total Residents]
         DBQuery -->|AVG| AverageWI[Average Welfare Index]
         DBQuery -->|COUNT: WI < 40| HighRisk[High-Risk Count]
         DBQuery -->|COUNT: Status = UNREAD| UnreadAlerts[Unread Notifications]
     end
 
-    DataCompile --> Format[Format JSON Envelope]
+    Residents --> Format[Format JSON Envelope]
+    AverageWI --> Format
+    HighRisk --> Format
+    UnreadAlerts --> Format
     Format --> Response[HTTP Response 200 OK]
 ```
 
@@ -418,9 +421,9 @@ graph TD
     SetContext --> Handler[Controller Handler]
     Handler --> Repo[Repository Layer]
     
-    subgraph Data Layer Segregation
+    subgraph DataLayerSegregation ["Data Layer Segregation"]
         Repo -->|1. SQL: WHERE tenant_id = context.tenantId| PG[(PostgreSQL)]
-        Repo -->|2. Mongoose: { tenantId: context.tenantId }| Mongo[(MongoDB)]
+        Repo -->|2. Mongoose: tenantId = context.tenantId| Mongo[(MongoDB)]
     end
 ```
 
@@ -434,11 +437,11 @@ graph TD
     Controller --> Service[Dashboard Service]
     Service --> Repo[Dashboard Repository]
     
-    subgraph SQL Aggregations
-        Repo -->|1. Get Total Count| Count[SELECT COUNT(*) FROM residents WHERE tenant_id]
-        Repo -->|2. Compute Average Index| Avg[SELECT AVG(welfare_index) FROM resident_analytics WHERE tenant_id]
-        Repo -->|3. Risk Categories| Risk[SELECT welfare_index FROM resident_analytics WHERE tenant_id]
-        Repo -->|4. Unread Notifications| Notif[SELECT COUNT(*) FROM notifications WHERE tenant_id AND status = 'UNREAD']
+    subgraph SQLAggregations ["SQL Aggregations"]
+        Repo -->|1. Get Total Count| Count["SELECT COUNT(*) FROM residents WHERE tenant_id"]
+        Repo -->|2. Compute Average Index| Avg["SELECT AVG(welfare_index) FROM resident_analytics WHERE tenant_id"]
+        Repo -->|3. Risk Categories| Risk["SELECT welfare_index FROM resident_analytics WHERE tenant_id"]
+        Repo -->|4. Unread Notifications| Notif["SELECT COUNT(*) FROM notifications WHERE tenant_id AND status = 'UNREAD'"]
     end
     
     Count --> Compile[Compile Overview JSON Payload]
