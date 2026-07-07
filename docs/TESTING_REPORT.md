@@ -4,6 +4,19 @@
 
 ---
 
+## Academic Metadata
+
+| Property               | Details                                                             |
+| :--------------------- | :------------------------------------------------------------------ |
+| **Author**             | Kurinji Eswar J A                                                   |
+| **Degree**             | Bachelor of Technology (B.Tech), Computer Science and Engineering   |
+| **Academic Year**      | 2026–2027                                                           |
+| **Project Supervisor** | Dr. Ajey Prasaath K.B                                               |
+| **Designation**        | Assistant Professor                                                 |
+| **Institution**        | SRM Institute of Science and Technology, Tiruchirappalli Campus   |
+
+---
+
 ## 1. Introduction
 This software testing report documents the verification and validation activities conducted on the **WelfareSync Engine**. Testing was performed to ensure logical multi-tenant isolation, database consistency across PostgreSQL and MongoDB, event pipeline reliability via Redis Pub/Sub, and accurate resident telemetry index computations.
 

@@ -4,6 +4,19 @@
 
 ---
 
+## Academic Metadata
+
+| Property               | Details                                                             |
+| :--------------------- | :------------------------------------------------------------------ |
+| **Author**             | Kurinji Eswar J A                                                   |
+| **Degree**             | Bachelor of Technology (B.Tech), Computer Science and Engineering   |
+| **Academic Year**      | 2026–2027                                                           |
+| **Project Supervisor** | Dr. Ajey Prasaath K.B                                               |
+| **Designation**        | Assistant Professor                                                 |
+| **Institution**        | SRM Institute of Science and Technology, Tiruchirappalli Campus   |
+
+---
+
 ## 1. Introduction
 
 ### 1.1 Document Purpose
@@ -183,6 +196,9 @@ Stores compiled sub-scores and overall welfare indexes.
 | `welfare_index` | `NUMERIC(6,2)`| `NOT NULL`, `DEFAULT 0`, `CHECK (welfare_index BETWEEN 0 AND 100)`| Weighted welfare index ($WI$). |
 | `created_at` | `TIMESTAMPTZ` | `NOT NULL`, `DEFAULT NOW()` | Initial score generation date. |
 | `updated_at` | `TIMESTAMPTZ` | `NOT NULL`, `DEFAULT NOW()` | Date of last update. |
+
+> [!NOTE]
+> The `activity_score` is computed and saved in this table for comprehensive behavioral monitoring. However, it is excluded from the weighted `welfare_index` ($WI$) calculation because the `residents` table schema design restricts scoring weights to medication, nutrition, and vitals.
 
 ### 6.7 Table: `notifications`
 Stores warning alerts.

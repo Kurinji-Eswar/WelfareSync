@@ -2,18 +2,19 @@
 ## WELFARESYNC ENGINE: A SCALABLE MULTI-TENANT RESIDENT WELFARE ANALYTICS & MONITORING SYSTEM
 
 **Submitted in partial fulfillment of the requirements for the award of the degree of**
-### Bachelor of Technology (B.Tech) Computer Science and Engineering
+### Bachelor of Technology (B.Tech), Computer Science and Engineering
 
 **Submitted by:**
 *   **Student Name**: Kurinji Eswar J A
 *   **Roll Number**: RA2411003050174
+*   **Academic Year**: 2026–2027
 
 **Under the supervision of:**
 *   **Project Supervisor**: Dr. Ajey Prasaath K.B
 *   **Designation**: Assistant Professor
 
 **Institution:**
-*   **SRM Institute of Science and Technology, Tiruchirappalli**
+*   **SRM Institute of Science and Technology, Tiruchirappalli Campus**
 
 ---
 

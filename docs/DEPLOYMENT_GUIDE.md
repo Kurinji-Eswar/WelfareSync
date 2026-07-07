@@ -4,6 +4,19 @@
 
 ---
 
+## Academic Metadata
+
+| Property               | Details                                                             |
+| :--------------------- | :------------------------------------------------------------------ |
+| **Author**             | Kurinji Eswar J A                                                   |
+| **Degree**             | Bachelor of Technology (B.Tech), Computer Science and Engineering   |
+| **Academic Year**      | 2026–2027                                                           |
+| **Project Supervisor** | Dr. Ajey Prasaath K.B                                               |
+| **Designation**        | Assistant Professor                                                 |
+| **Institution**        | SRM Institute of Science and Technology, Tiruchirappalli Campus   |
+
+---
+
 ## 1. Introduction
 This deployment guide provides a step-by-step technical walkthrough for setting up and deploying the **WelfareSync Engine**. WelfareSync is a hybrid-database, multi-tenant Resident Welfare Analytics and Monitoring System. The application utilizes Node.js and Express.js, using PostgreSQL for structured metadata, configuration, and index summaries, MongoDB for high-write telemetry logs, and Redis for Pub/Sub messaging and event processing.
 

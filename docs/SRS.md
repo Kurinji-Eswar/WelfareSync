@@ -4,6 +4,19 @@
 
 ---
 
+## Academic Metadata
+
+| Property               | Details                                                             |
+| :--------------------- | :------------------------------------------------------------------ |
+| **Author**             | Kurinji Eswar J A                                                   |
+| **Degree**             | Bachelor of Technology (B.Tech), Computer Science and Engineering   |
+| **Academic Year**      | 2026–2027                                                           |
+| **Project Supervisor** | Dr. Ajey Prasaath K.B                                               |
+| **Designation**        | Assistant Professor                                                 |
+| **Institution**        | SRM Institute of Science and Technology, Tiruchirappalli Campus   |
+
+---
+
 ## 1. Introduction
 
 ### 1.1 Purpose
@@ -159,6 +172,7 @@ Access Token JWT Claims:
         *   No logs present $\implies 0$
 *   **REQ-AN-5**: The system must calculate the overall Welfare Index ($WI$) as a weighted average of the Medication ($S_m$), Nutrition ($S_n$), and Vitals ($S_v$) scores using the custom weights stored on the resident's profile ($W_m, W_n, W_v$):
     $$WI = \frac{(W_m \cdot S_m) + (W_n \cdot S_n) + (W_v \cdot S_v)}{W_m + W_n + W_v}$$
+    *Physical activity scores are calculated and stored separately for general monitoring, but are excluded from the weighted Welfare Index ($WI$) computation.*
 *   **REQ-AN-6**: Calculated scores must be saved in the PostgreSQL `resident_analytics` table via an atomic upsert operation keyed on `(tenant_id, resident_id)`.
 
 ```

@@ -3,6 +3,19 @@
 
 ---
 
+## Academic Metadata
+
+| Property               | Details                                                             |
+| :--------------------- | :------------------------------------------------------------------ |
+| **Author**             | Kurinji Eswar J A                                                   |
+| **Degree**             | Bachelor of Technology (B.Tech), Computer Science and Engineering   |
+| **Academic Year**      | 2026–2027                                                           |
+| **Project Supervisor** | Dr. Ajey Prasaath K.B                                               |
+| **Designation**        | Assistant Professor                                                 |
+| **Institution**        | SRM Institute of Science and Technology, Tiruchirappalli Campus   |
+
+---
+
 ## 1. Project Introduction (1-Minute Answer)
 "WelfareSync is a multi-tenant backend engine designed to automate resident health and welfare monitoring in care facilities. It implements a **Hybrid Database Architecture** using PostgreSQL for structured metadata, MongoDB for dynamic care telemetry logs, and Redis for Pub/Sub messaging. 
 

@@ -2,14 +2,14 @@
 
 > **Scalable Multi-Tenant Resident Welfare Analytics & Monitoring System**
 
-[![Academic Project](https://img.shields.io/badge/Academic%20Project-SRM%20IST-blue?style=flat-square)](file:///k:/Kuralara_CareConnect/WelfareSync)
-[![Status: Completed](https://img.shields.io/badge/Status-Completed-success?style=flat-square)](file:///k:/Kuralara_CareConnect/WelfareSync)
+[![Academic Project](https://img.shields.io/badge/Academic%20Project-SRM%20IST-blue?style=flat-square)](./)
+[![Status: Completed](https://img.shields.io/badge/Status-Completed-success?style=flat-square)](./)
 [![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
 [![Express.js](https://img.shields.io/badge/Express.js-000000?style=flat-square&logo=express&logoColor=white)](https://expressjs.com/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 [![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white)](https://redis.io/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](file:///k:/Kuralara_CareConnect/WelfareSync/LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](./LICENSE)
 
 ---
 
@@ -18,7 +18,7 @@
 | Property               | Details                                                             |
 | :--------------------- | :------------------------------------------------------------------ |
 | **Author**             | **Kurinji Eswar J A**                                               |
-| **Degree**             | Bachelor of Technology (B.Tech)<br>Computer Science and Engineering |
+| **Degree**             | Bachelor of Technology (B.Tech),<br>Computer Science and Engineering|
 | **Academic Year**      | 2026–2027                                                           |
 | **Project Supervisor** | **Dr. Ajey Prasaath K.B**                                           |
 | **Designation**        | Assistant Professor                                                 |
@@ -117,7 +117,7 @@ WelfareSync implements a hybrid database layout to manage the dual demands of tr
 
 ### PostgreSQL (ACID Metadata)
 
-* **Used For**: Organizational tenants, user credentials, refresh tokens, active institutions, resident demographic profiles, pre-calculated score indices, and alert logs.
+* **Used For**: Organizational tenants, user credentials, refresh tokens, active institutions, resident demographic profiles, pre-calculated score indexes, and alert logs.
 * **Selected Because**: Provides reliable ACID compliance, referential integrity, and cascading deletions to keep child records clean when parent records are removed.
 
 ### MongoDB (Timeline Data Store)
@@ -217,16 +217,16 @@ npm run dev
 
 The project directory is structured as follows:
 
-* [src/config/](file:///k:/Kuralara_CareConnect/WelfareSync/src/config/): Configuration layer establishing native PostgreSQL client pools, MongoDB Mongoose clients, and Redis broker connections.
-* [src/middleware/](file:///k:/Kuralara_CareConnect/WelfareSync/src/middleware/): Express middleware pipelines handling JWT decoding (`authenticate`), logical multi-tenancy verification (`tenantValidation`), and privilege checks (`authorize`).
-* [src/modules/](file:///k:/Kuralara_CareConnect/WelfareSync/src/modules/): Modular business logic folders split by domains (e.g., `auth`, `residents`, `logs`, `dashboard`). Each module encapsulates its respective Express router, controllers handlers, service logic, and repositories.
-* [src/routes/](file:///k:/Kuralara_CareConnect/WelfareSync/src/routes/): Main router mapping prefix paths and hosting the `/health` API.
-* [src/workers/](file:///k:/Kuralara_CareConnect/WelfareSync/src/workers/): Background computational workers recalculating scores.
-* [src/events/](file:///k:/Kuralara_CareConnect/WelfareSync/src/events/): Event Pub/Sub logic containing Redis publishers and subscribers.
-* [docs/](file:///k:/Kuralara_CareConnect/WelfareSync/docs/): Verification suite and comprehensive technical specifications documentation.
-* [README.md](file:///k:/Kuralara_CareConnect/WelfareSync/README.md): Root project guide.
-* [LICENSE](file:///k:/Kuralara_CareConnect/WelfareSync/LICENSE): MIT project license.
-* [.env](file:///k:/Kuralara_CareConnect/WelfareSync/.env): Local environment properties configuration keys template.
+* [src/config/](./src/config/): Configuration layer establishing native PostgreSQL client pools, MongoDB Mongoose clients, and Redis broker connections.
+* [src/middleware/](./src/middleware/): Express middleware pipelines handling JWT decoding (`authenticate`), logical multi-tenancy verification (`tenantValidation`), and privilege checks (`authorize`).
+* [src/modules/](./src/modules/): Modular business logic folders split by domains (e.g., `auth`, `residents`, `logs`, `dashboard`). Each module encapsulates its respective Express router, controllers handlers, service logic, and repositories.
+* [src/routes/](./src/routes/): Main router mapping prefix paths and hosting the `/health` API.
+* [src/workers/](./src/workers/): Background computational workers recalculating scores.
+* [src/events/](./src/events/): Event Pub/Sub logic containing Redis publishers and subscribers.
+* [docs/](./docs/): Verification suite and comprehensive technical specifications documentation.
+* [README.md](./README.md): Root project guide.
+* [LICENSE](./LICENSE): MIT project license.
+* [.env](./.env): Local environment properties configuration keys template.
 
 ---
 
@@ -234,18 +234,18 @@ The project directory is structured as follows:
 
 All technical files are stored in the `/docs` directory:
 
-1. **[SRS.md](file:///k:/Kuralara_CareConnect/WelfareSync/docs/SRS.md)**: Software Requirements Specification.
-2. **[HLD.md](file:///k:/Kuralara_CareConnect/WelfareSync/docs/HLD.md)**: High-Level Design.
-3. **[LLD.md](file:///k:/Kuralara_CareConnect/WelfareSync/docs/LLD.md)**: Low-Level Design.
-4. **[DATABASE_DESIGN.md](file:///k:/Kuralara_CareConnect/WelfareSync/docs/DATABASE_DESIGN.md)**: Database Schemas and Index Designs.
-5. **[API_DOCUMENTATION.md](file:///k:/Kuralara_CareConnect/WelfareSync/docs/API_DOCUMENTATION.md)**: REST Endpoints JSON Payloads.
-6. **[DEPLOYMENT_GUIDE.md](file:///k:/Kuralara_CareConnect/WelfareSync/docs/DEPLOYMENT_GUIDE.md)**: Local Startup Guide.
-7. **[TESTING_REPORT.md](file:///k:/Kuralara_CareConnect/WelfareSync/docs/TESTING_REPORT.md)**: Manual Test Cases and Traces.
-8. **[ARCHITECTURE_REPORT.md](file:///k:/Kuralara_CareConnect/WelfareSync/docs/ARCHITECTURE_REPORT.md)**: Architecture Decision Records (ADRs).
-9. **[FINAL_PROJECT_REPORT.md](file:///k:/Kuralara_CareConnect/WelfareSync/docs/FINAL_PROJECT_REPORT.md)**: Full Academic Thesis Report.
-10. **[VIVA_PREPARATION.md](file:///k:/Kuralara_CareConnect/WelfareSync/docs/VIVA_PREPARATION.md)**: Examiner Questions and Answers.
-11. **[POSTMAN_COLLECTION.md](file:///k:/Kuralara_CareConnect/WelfareSync/docs/POSTMAN_COLLECTION.md)**: Postman collection configurations.
-12. **[PROJECT_STRUCTURE.md](file:///k:/Kuralara_CareConnect/WelfareSync/docs/PROJECT_STRUCTURE.md)**: Project folder architecture.
+1. **[SRS.md](./docs/SRS.md)**: Software Requirements Specification.
+2. **[HLD.md](./docs/HLD.md)**: High-Level Design.
+3. **[LLD.md](./docs/LLD.md)**: Low-Level Design.
+4. **[DATABASE_DESIGN.md](./docs/DATABASE_DESIGN.md)**: Database Schemas and Index Designs.
+5. **[API_DOCUMENTATION.md](./docs/API_DOCUMENTATION.md)**: REST Endpoints JSON Payloads.
+6. **[DEPLOYMENT_GUIDE.md](./docs/DEPLOYMENT_GUIDE.md)**: Local Startup Guide.
+7. **[TESTING_REPORT.md](./docs/TESTING_REPORT.md)**: Manual Test Cases and Traces.
+8. **[ARCHITECTURE_REPORT.md](./docs/ARCHITECTURE_REPORT.md)**: Architecture Decision Records (ADRs).
+9. **[FINAL_PROJECT_REPORT.md](./docs/FINAL_PROJECT_REPORT.md)**: Full Academic Thesis Report.
+10. **[VIVA_PREPARATION.md](./docs/VIVA_PREPARATION.md)**: Examiner Questions and Answers.
+11. **[POSTMAN_COLLECTION.md](./docs/POSTMAN_COLLECTION.md)**: Postman collection configurations.
+12. **[PROJECT_STRUCTURE.md](./docs/PROJECT_STRUCTURE.md)**: Project folder architecture.
 
 ---
 
@@ -287,4 +287,4 @@ All technical files are stored in the `/docs` directory:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](file:///k:/Kuralara_CareConnect/WelfareSync/LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
